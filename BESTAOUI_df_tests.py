@@ -74,3 +74,10 @@ df.head(150)
 df_copy = df.copy()
 
 df_copy.head(20)
+
+#Concaténer deux DataFrames
+
+df1 = pd.DataFrame(my_list[:500])
+df2 = pd.DataFrame(my_list[501:1000])
+
+pd.concat([df1, df2])
