@@ -123,15 +123,17 @@ df4 = pd.DataFrame(my_list['price'])
 pd.merge(df3, df4, on= 'price', how='left')
 
 #Groupements SUM
+#Résultat: Grouper le dataframe avec les colonnes quality (low, high, medium) et lister la somme des élements ayant ces critères
 
 df5 = my_list
 df6 = my_list
 
-df5.groupby(['quality', 'id']).sum()
+df5.groupby(['quality']).sum()
 
 #Groupements MEAN
+#Résultat: Afficher les moyennes des valeurs des élements par rapport à un regroupement de quality (low, high, medium) et prix
 
 df5 = my_list
 df6 = my_list
 
-df5.groupby(['quality', 'price', 'id']).mean()
+df5.groupby(['quality', 'price']).mean()
