@@ -217,3 +217,21 @@ df12['prod_cost'] = df12['prod_cost'].fillna(df12['prod_cost'].mean())
 
 #Vérification des valeurs remplacées
 df12.groupby('prod_cost').sum()
+
+#One Hot Encoder
+
+#Créer la ONE HOT ENCODER list avec des vecteurs représentatifs pour chaque donnée numérique de la colonne prod_cost
+encoded_list = list()
+data = [1,2,3]
+for i in data:
+  elm = [0,0,0]
+  elm[i-1] = 1
+  encoded_list.append(elm)
+
+#remplacer les valeurs sur la colonne prod_cost par les valeurs encoded qui seront qualitatives nominales
+for i in range (1, len(df13['prod_cost'])):
+  df13.loc[df13["prod_cost"] == 1,"prod_cost"] = encoded_list[0]
+  df13.loc[df13["prod_cost"] == 2,"prod_cost"] = encoded_list[1]
+  df13.loc[df13["prod_cost"] == 3,"prod_cost"] = encoded_list[2]
+
+df13['product_type']
