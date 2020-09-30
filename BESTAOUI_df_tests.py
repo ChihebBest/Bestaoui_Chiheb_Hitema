@@ -220,18 +220,18 @@ df12.groupby('prod_cost').sum()
 
 #One Hot Encoder
 
-#Créer la ONE HOT ENCODER list avec des vecteurs représentatifs pour chaque donnée numérique de la colonne prod_cost
-encoded_list = list()
-data = [1,2,3]
-for i in data:
-  elm = [0,0,0]
-  elm[i-1] = 1
-  encoded_list.append(elm)
+my_list_13 = pd.read_csv('/content/drive/My Drive/mower_market_snapshot.csv', sep = ';')
 
-#remplacer les valeurs sur la colonne prod_cost par les valeurs encoded qui seront qualitatives nominales
-for i in range (1, len(df13['prod_cost'])):
-  df13.loc[df13["prod_cost"] == 1,"prod_cost"] = encoded_list[0]
-  df13.loc[df13["prod_cost"] == 2,"prod_cost"] = encoded_list[1]
-  df13.loc[df13["prod_cost"] == 3,"prod_cost"] = encoded_list[2]
+df13 = pd.DataFrame(my_list_13)
 
-df13['product_type']
+#Créer les nouvelles colonnes avec les valeurs du product_type avant la modification (AVANT LE POINT 2)
+#Cette fonction crée les colonnes sous forme de vecteurs pour attribuer une valeur de 1 à la ligne correspendante du product_type
+one_h = pd.get_dummies(df13['product_type'])
+
+#Remplacer les valeurs de la colonne product_type avec 1, 2 et 3 (REFAIRE LE POINT 2)
+for i in range (1, len(df13)):
+  df13.loc[df13["product_type"] == "essence","product_type"] = 3
+  df13.loc[df13["product_type"] == "auto-portee","product_type"] = 1
+  df13.loc[df13["product_type"] == "electrique","product_type"] = 2
+
+df13.loc[100:150]
